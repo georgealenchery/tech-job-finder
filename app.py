@@ -8,188 +8,339 @@ st.set_page_config(page_title="Tech Job Hunter", layout="wide", initial_sidebar_
 
 st.markdown("""
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Source+Sans+3:wght@300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Exo+2:wght@300;400;500;600&display=swap');
+
+/* ===== XBOX 360 NXE THEME ===== */
 
 html, body, [class*="css"] {
-    font-family: 'Source Sans 3', sans-serif;
-    background-color: #0a1628;
-    color: #f0f4ff;
+    font-family: 'Exo 2', sans-serif;
+    background-color: #080D08;
+    color: #FFFFFF;
 }
 
 .stApp {
-    background-color: #0a1628;
+    background:
+        radial-gradient(ellipse at 25% 15%, rgba(127,186,0,0.10) 0%, transparent 50%),
+        radial-gradient(ellipse at 78% 80%, rgba(16,124,16,0.07) 0%, transparent 50%),
+        #080D08;
+    min-height: 100vh;
 }
 
-.header-block {
-    text-align: center;
-    padding: 2.5rem 0 1.5rem 0;
-    border-bottom: 1px solid #1e3a5f;
+/* ===== HEADER ===== */
+.xbox-header {
+    padding: 2rem 0 0 0;
     margin-bottom: 2rem;
 }
 
-.header-block h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: 3.2rem;
+.xbox-brand {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    margin-bottom: 1.2rem;
+}
+
+.xbox-orb {
+    width: 58px;
+    height: 58px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 35%, #C8FF50 0%, #7FBA00 40%, #4A8A00 70%, #1A4A00 100%);
+    border: 2px solid rgba(173,255,47,0.55);
+    box-shadow:
+        0 0 28px rgba(127,186,0,0.75),
+        0 0 55px rgba(127,186,0,0.30),
+        inset 0 0 16px rgba(255,255,255,0.15);
+    flex-shrink: 0;
+}
+
+.xbox-brand-text h1 {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 2.7rem;
+    font-weight: 700;
+    color: #FFFFFF;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    line-height: 1;
+    text-shadow: 0 0 30px rgba(127,186,0,0.30);
+    margin: 0;
+    padding: 0;
+}
+
+.xbox-brand-text p {
+    font-family: 'Exo 2', sans-serif;
+    font-size: 0.70rem;
+    color: #7FBA00;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin: 0.25rem 0 0 0;
+    padding: 0;
+}
+
+/* ===== BLADE NAV BAR ===== */
+.blade-bar {
+    display: flex;
+    align-items: stretch;
+    border-bottom: 2px solid #7FBA00;
+    box-shadow: 0 2px 18px rgba(127,186,0,0.22);
+    gap: 0;
+}
+
+.blade {
+    padding: 0.55rem 2rem;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 0.76rem;
     font-weight: 600;
-    color: #ffffff;
-    letter-spacing: -0.5px;
-    margin-bottom: 0.3rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #3A6A3A;
+    background: #0D120D;
+    border-top: 1px solid #1A3A1A;
+    border-right: 1px solid #1A3A1A;
+    border-left: 1px solid #1A3A1A;
+    cursor: default;
 }
 
-.header-block p {
-    font-size: 1rem;
-    font-weight: 300;
-    color: #7a9cc4;
-    letter-spacing: 1px;
+.blade.active {
+    background: linear-gradient(180deg, #9ACA3C 0%, #5A9A1A 60%, #3D7510 100%);
+    color: #000000;
+    font-weight: 700;
+    border-color: #7FBA00;
+    box-shadow: 0 0 14px rgba(127,186,0,0.40);
+    position: relative;
+    z-index: 1;
 }
 
+/* ===== SEARCH SECTION ===== */
 .search-section {
-    background: #0f2040;
-    border: 1px solid #1e3a5f;
-    border-radius: 10px;
-    padding: 1.4rem 1.8rem;
-    margin-bottom: 2rem;
+    background: linear-gradient(135deg, #111A11 0%, #0A120A 100%);
+    border: 1px solid #2A4A2A;
+    border-left: 4px solid #7FBA00;
+    border-radius: 2px;
+    padding: 1.2rem 1.6rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 0 20px rgba(0,0,0,0.5), inset 0 1px 0 rgba(127,186,0,0.08);
 }
 
 .section-label {
-    font-size: 0.7rem;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 0.66rem;
     text-transform: uppercase;
-    letter-spacing: 2px;
-    color: #7a9cc4;
-    margin-bottom: 0.6rem;
+    letter-spacing: 3px;
+    color: #7FBA00;
+    margin-bottom: 0.7rem;
+    font-weight: 700;
 }
 
+/* ===== NXE STAT TILES ===== */
 .stat-row {
     display: flex;
-    gap: 1rem;
+    gap: 0.7rem;
     margin-bottom: 2rem;
 }
 
-.stat-card {
+.stat-tile {
     flex: 1;
-    background: #0f2040;
-    border: 1px solid #1e3a5f;
-    border-radius: 8px;
-    padding: 1.2rem 1.5rem;
+    background: linear-gradient(145deg, #9ACA3C 0%, #6EAE18 45%, #4A8A08 100%);
+    border-radius: 5px;
+    padding: 1rem 1.3rem 1.2rem;
+    position: relative;
+    overflow: hidden;
+    box-shadow:
+        0 6px 22px rgba(0,0,0,0.60),
+        0 0 14px rgba(127,186,0,0.13),
+        inset 0 1px 0 rgba(255,255,255,0.22);
 }
 
-.stat-card .label {
-    font-size: 0.7rem;
+.stat-tile::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 44%;
+    background: linear-gradient(180deg, rgba(255,255,255,0.18) 0%, transparent 100%);
+    border-radius: 5px 5px 0 0;
+    pointer-events: none;
+}
+
+.tile-label {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 0.60rem;
+    letter-spacing: 2.5px;
     text-transform: uppercase;
-    letter-spacing: 1.5px;
-    color: #7a9cc4;
-    margin-bottom: 0.4rem;
+    color: rgba(0,0,0,0.62);
+    font-weight: 700;
+    position: relative;
+    z-index: 1;
 }
 
-.stat-card .value {
-    font-family: 'Playfair Display', serif;
-    font-size: 2rem;
-    color: #ffffff;
+.tile-value {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 3.1rem;
+    font-weight: 700;
+    color: #000000;
+    line-height: 1.05;
+    margin-top: 0.1rem;
+    position: relative;
+    z-index: 1;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.18);
 }
 
-.stat-card.accent .value {
-    color: #f0c060;
+.stat-tile.offers {
+    background: linear-gradient(145deg, #FFD700 0%, #FFA500 45%, #CC7000 100%);
 }
 
-.stTextInput input {
-    background: #162d4a !important;
-    border: 1px solid #1e3a5f !important;
-    border-radius: 6px !important;
-    color: #f0f4ff !important;
-    font-family: 'Source Sans 3', sans-serif !important;
-    font-size: 1rem !important;
+/* ===== JOB EXPANDERS ===== */
+[data-testid="stExpander"] {
+    border: none !important;
+    margin-bottom: 0.4rem !important;
 }
-
-.stTextInput input::placeholder {
-    color: #4a6a8a !important;
-}
-
-.stSelectbox > div > div {
-    background: #162d4a !important;
-    border: 1px solid #1e3a5f !important;
-    color: #f0f4ff !important;
-}
-
-.stTextArea textarea {
-    background: #162d4a !important;
-    border: 1px solid #1e3a5f !important;
-    color: #f0f4ff !important;
-    font-family: 'Source Sans 3', sans-serif !important;
-}
-
-.stButton > button {
-    background: #1a5276 !important;
-    color: #ffffff !important;
-    border: 1px solid #2471a3 !important;
-    border-radius: 6px !important;
-    font-family: 'Source Sans 3', sans-serif !important;
-    font-weight: 500 !important;
-    padding: 0.4rem 1.2rem !important;
-    transition: background 0.2s !important;
-}
-
-.stButton > button:hover {
-    background: #2471a3 !important;
-}
-
-.stFormSubmitButton > button {
-    background: #1a5276 !important;
-    color: #ffffff !important;
-    border: 1px solid #2471a3 !important;
-    border-radius: 6px !important;
-    font-family: 'Source Sans 3', sans-serif !important;
-    font-weight: 500 !important;
-    width: 100% !important;
-    transition: background 0.2s !important;
-}
-
-.stFormSubmitButton > button:hover {
-    background: #2471a3 !important;
-}
-
-.status-badge {
-    display: inline-block;
-    padding: 2px 10px;
-    border-radius: 20px;
-    font-size: 0.72rem;
-    font-weight: 500;
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
-}
-
-.badge-New       { background: #162d4a; color: #7a9cc4; border: 1px solid #1e3a5f; }
-.badge-Applied   { background: #0d3320; color: #5dbb8a; border: 1px solid #1a5c3a; }
-.badge-Interview { background: #0d1f40; color: #6b9fdb; border: 1px solid #1a3a6e; }
-.badge-Rejected  { background: #3a0d0d; color: #db6b6b; border: 1px solid #6e1a1a; }
-.badge-Offer     { background: #3a2a0d; color: #f0c060; border: 1px solid #6e4e1a; }
 
 .streamlit-expanderHeader {
-    background: #0f2040 !important;
-    border: 1px solid #1e3a5f !important;
-    border-radius: 8px !important;
-    color: #f0f4ff !important;
-    font-family: 'Source Sans 3', sans-serif !important;
+    background: linear-gradient(135deg, #121C12 0%, #0A120A 100%) !important;
+    border: 1px solid #253525 !important;
+    border-left: 3px solid #5A9A1A !important;
+    border-radius: 3px !important;
+    color: #FFFFFF !important;
+    font-family: 'Rajdhani', sans-serif !important;
+    font-size: 1rem !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.5px !important;
+}
+
+.streamlit-expanderHeader:hover {
+    border-left-color: #ADFF2F !important;
+    box-shadow: 0 0 14px rgba(127,186,0,0.14) !important;
 }
 
 .streamlit-expanderContent {
-    background: #0f2040 !important;
-    border: 1px solid #1e3a5f !important;
+    background: #0F180F !important;
+    border: 1px solid #1A2A1A !important;
     border-top: none !important;
-    border-radius: 0 0 8px 8px !important;
+    border-radius: 0 0 3px 3px !important;
 }
 
-hr { border-color: #1e3a5f !important; margin: 1.5rem 0 !important; }
+/* ===== STATUS BADGES ===== */
+.status-badge {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 2px;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+}
 
-a { color: #6baed6 !important; text-decoration: none; }
-a:hover { text-decoration: underline; }
+.badge-New       { background: #0F1A0F; color: #7FBA00; border: 1px solid #2A4A2A; }
+.badge-Applied   { background: #1A2A0F; color: #ADFF2F; border: 1px solid #3A6A1A; }
+.badge-Interview { background: #0F1A2A; color: #60A0FF; border: 1px solid #1A3A6A; }
+.badge-Rejected  { background: #2A0F0F; color: #FF6060; border: 1px solid #6A1A1A; }
+.badge-Offer     { background: #2A1F00; color: #FFD700; border: 1px solid #6A5000; }
+
+/* ===== INPUTS ===== */
+.stTextInput input {
+    background: #111A11 !important;
+    border: 1px solid #2A4A2A !important;
+    border-radius: 2px !important;
+    color: #FFFFFF !important;
+    font-family: 'Exo 2', sans-serif !important;
+    font-size: 0.95rem !important;
+    caret-color: #7FBA00 !important;
+}
+
+.stTextInput input:focus {
+    border-color: #7FBA00 !important;
+    box-shadow: 0 0 0 1px #7FBA00, 0 0 14px rgba(127,186,0,0.22) !important;
+}
+
+.stTextInput input::placeholder { color: #2A4A2A !important; }
+
+.stSelectbox > div > div {
+    background: #111A11 !important;
+    border: 1px solid #2A4A2A !important;
+    color: #FFFFFF !important;
+    border-radius: 2px !important;
+}
+
+.stTextArea textarea {
+    background: #111A11 !important;
+    border: 1px solid #2A4A2A !important;
+    color: #FFFFFF !important;
+    font-family: 'Exo 2', sans-serif !important;
+    border-radius: 2px !important;
+}
+
+/* ===== BUTTONS ===== */
+.stButton > button {
+    background: linear-gradient(180deg, #92CC3F 0%, #5EA018 100%) !important;
+    color: #000000 !important;
+    border: none !important;
+    border-radius: 3px !important;
+    font-family: 'Rajdhani', sans-serif !important;
+    font-weight: 700 !important;
+    font-size: 0.86rem !important;
+    letter-spacing: 1.5px !important;
+    text-transform: uppercase !important;
+    padding: 0.45rem 1.2rem !important;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.25) !important;
+    transition: all 0.15s !important;
+}
+
+.stButton > button:hover {
+    background: linear-gradient(180deg, #ADFF2F 0%, #7FBA00 100%) !important;
+    box-shadow: 0 0 20px rgba(127,186,0,0.55), 0 3px 10px rgba(0,0,0,0.4) !important;
+}
+
+.stFormSubmitButton > button {
+    background: linear-gradient(180deg, #92CC3F 0%, #5EA018 100%) !important;
+    color: #000000 !important;
+    border: none !important;
+    border-radius: 3px !important;
+    font-family: 'Rajdhani', sans-serif !important;
+    font-weight: 700 !important;
+    font-size: 0.86rem !important;
+    letter-spacing: 1.5px !important;
+    text-transform: uppercase !important;
+    width: 100% !important;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.25) !important;
+}
+
+.stFormSubmitButton > button:hover {
+    background: linear-gradient(180deg, #ADFF2F 0%, #7FBA00 100%) !important;
+    box-shadow: 0 0 20px rgba(127,186,0,0.55) !important;
+}
+
+/* ===== MISC ===== */
+hr { border-color: #1A2A1A !important; margin: 1.5rem 0 !important; }
+a { color: #7FBA00 !important; text-decoration: none !important; }
+a:hover { color: #ADFF2F !important; }
+
+.stMarkdown p { color: #CCDDCC; }
+
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: #080D08; }
+::-webkit-scrollbar-thumb { background: #2A4A2A; border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover { background: #7FBA00; }
+
+/* Alert / toast overrides */
+[data-testid="stAlert"] { border-radius: 2px !important; }
 </style>
 """, unsafe_allow_html=True)
 
 # --- Header ---
 st.markdown("""
-<div class="header-block">
-    <h1>Tech Job Hunter</h1>
-    <p>George Alenchery</p>
+<div class="xbox-header">
+    <div class="xbox-brand">
+        <div class="xbox-orb"></div>
+        <div class="xbox-brand-text">
+            <h1>Tech Job Hunter</h1>
+            <p>George Alenchery &nbsp;&middot;&nbsp; Remote OK</p>
+        </div>
+    </div>
+    <div class="blade-bar">
+        <div class="blade active">My Jobs</div>
+        <div class="blade">Marketplace</div>
+        <div class="blade">Achievements</div>
+        <div class="blade">System</div>
+    </div>
 </div>
 """, unsafe_allow_html=True)
 
@@ -198,7 +349,7 @@ if "keyword" not in st.session_state:
     st.session_state["keyword"] = "software"
 
 # --- Search / Scrape ---
-st.markdown('<div class="search-section"><div class="section-label">Search & Fetch Listings</div>', unsafe_allow_html=True)
+st.markdown('<div class="search-section"><div class="section-label">Search &amp; Fetch Listings</div>', unsafe_allow_html=True)
 
 with st.form(key="search_form", clear_on_submit=False):
     col1, col2 = st.columns([4, 1])
@@ -229,10 +380,22 @@ offers = sum(1 for j in all_jobs if j[9] == "Offer")
 
 st.markdown(f"""
 <div class="stat-row">
-    <div class="stat-card"><div class="label">Total Listings</div><div class="value">{total}</div></div>
-    <div class="stat-card"><div class="label">Applied</div><div class="value">{applied}</div></div>
-    <div class="stat-card"><div class="label">Interviews</div><div class="value">{interviews}</div></div>
-    <div class="stat-card accent"><div class="label">Offers</div><div class="value">{offers}</div></div>
+    <div class="stat-tile">
+        <div class="tile-label">Total Listings</div>
+        <div class="tile-value">{total}</div>
+    </div>
+    <div class="stat-tile">
+        <div class="tile-label">Applied</div>
+        <div class="tile-value">{applied}</div>
+    </div>
+    <div class="stat-tile">
+        <div class="tile-label">Interviews</div>
+        <div class="tile-value">{interviews}</div>
+    </div>
+    <div class="stat-tile offers">
+        <div class="tile-label">Offers</div>
+        <div class="tile-value">{offers}</div>
+    </div>
 </div>
 """, unsafe_allow_html=True)
 
@@ -249,8 +412,12 @@ jobs = [j for j in get_all_jobs() if not keyword_filter or keyword_filter in (j[
 if status_filter != "All":
     jobs = [j for j in jobs if j[9] == status_filter]
 
-st.markdown(f"<p style='color:#4a6a8a; font-size:0.85rem; margin-bottom:1rem;'>{len(jobs)} listings</p>",
-    unsafe_allow_html=True)
+st.markdown(
+    f"<p style='font-family:Rajdhani,sans-serif; font-size:0.78rem; color:#3A6A3A; "
+    f"letter-spacing:1.5px; text-transform:uppercase; margin-bottom:1rem;'>"
+    f"{len(jobs)} listings found</p>",
+    unsafe_allow_html=True
+)
 
 STATUSES = ["New", "Applied", "Interview", "Rejected", "Offer"]
 
@@ -262,7 +429,10 @@ for job in jobs:
         st.markdown(f"""
         <div style='margin-bottom:0.8rem;'>
             <span class='status-badge {badge_class}'>{status}</span>
-            <span style='color:#4a6a8a; font-size:0.8rem; margin-left:0.8rem;'>{location} · {source} · {date_posted[:10] if date_posted else "—"}</span>
+            <span style='color:#3A6A3A; font-family:"Exo 2",sans-serif; font-size:0.78rem;
+                         margin-left:0.8rem; letter-spacing:0.5px;'>
+                {location} &nbsp;&middot;&nbsp; {source} &nbsp;&middot;&nbsp; {date_posted[:10] if date_posted else "—"}
+            </span>
         </div>
         """, unsafe_allow_html=True)
 
