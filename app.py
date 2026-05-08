@@ -337,9 +337,6 @@ st.markdown("""
     </div>
     <div class="blade-bar">
         <div class="blade active">My Jobs</div>
-        <div class="blade">Marketplace</div>
-        <div class="blade">Achievements</div>
-        <div class="blade">System</div>
     </div>
 </div>
 """, unsafe_allow_html=True)
